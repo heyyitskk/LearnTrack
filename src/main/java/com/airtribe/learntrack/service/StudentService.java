@@ -6,7 +6,6 @@ import com.airtribe.learntrack.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class StudentService {
     private final List<Student> students = new ArrayList<>();
@@ -21,12 +20,17 @@ public class StudentService {
         return new ArrayList<>(students);
     }
 
-    public Optional<Student> findById(int id){
-        return students.stream().filter(x -> x.getId() == id).findFirst();
+    public Student findById(int id) {
+        for (Student student : students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        throw new EntityNotFoundException("Student not found: " + id);
     }
 
     public void deactivateStudent(int id) {
-        Student s = findById(id).orElseThrow(() -> new EntityNotFoundException("Student not found: " + id));
+        Student s = findById(id);
         s.setActive(false);
     }
 }
