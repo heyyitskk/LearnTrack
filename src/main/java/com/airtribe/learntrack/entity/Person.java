@@ -35,4 +35,8 @@ public class Person {
     public String getDisplayName() {
         return firstName + " " + lastName;
     }
+
+    public String getDetails() {
+        return getDisplayName() + " " + getEmail();
+    }
 }
