@@ -22,5 +22,4 @@ java -cp target\learntrack-0.1.0.jar com.airtribe.learntrack.Main
 If you don't have Maven, compile and run with `javac` and `java` directly by compiling `src/main/java` files.
 
 _*Class Diagram:*_
-
-![LearnTrackUMLdiagram.png](docs/LearnTrackUMLdiagram.png)
+![LearnTrackUML.png](docs/LearnTrackUML.png)
