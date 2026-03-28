@@ -1,10 +1,8 @@
 package com.airtribe.learntrack.service;
 
-import com.airtribe.learntrack.entity.Course;
 import com.airtribe.learntrack.entity.Enrollment;
 import com.airtribe.learntrack.enums.EnrollmentStatus;
 import com.airtribe.learntrack.exception.EntityNotFoundException;
-import com.airtribe.learntrack.service.StudentService;
 import com.airtribe.learntrack.util.IdGenerator;
 
 import java.time.LocalDate;
@@ -21,13 +19,14 @@ public class EnrollmentService {
         this.courseService = courseService;
     }
 
-    public void enroll(int studentId, int courseId, LocalDate date) {
+    public Enrollment enroll(int studentId, int courseId, LocalDate date) {
         // validate
         studentService.findById(studentId);
         courseService.findById(courseId);
         int id = IdGenerator.nextEnrollmentId();
         Enrollment e = new Enrollment(id, studentId, courseId, date);
         enrollments.add(e);
+        return e;
     }
 
     public List<Enrollment> findAll() {
@@ -43,14 +42,19 @@ public class EnrollmentService {
         throw new EntityNotFoundException("Enrollment " + id + " not found");
     }
 
-    public Enrollment findByStudentId(int StudentId) {
-        studentService.findById(StudentId);
+    public List<Enrollment> findByStudentId(int studentId) {
+        studentService.findById(studentId);
+        List<Enrollment> result = new ArrayList<>();
+
         for (Enrollment enrollment : enrollments) {
-            if (enrollment.getStudentId() == StudentId) {
-                return enrollment;
+            if (enrollment.getStudentId() == studentId) {
+                result.add(enrollment);
             }
         }
-        throw new EntityNotFoundException("Enrollment " + StudentId + " not found");
+        if (result.isEmpty()) {
+            throw new EntityNotFoundException("Enrollment " + studentId + " not found");
+        }
+        return result;
     }
 
     public void updateStatus(int enrollmentId, EnrollmentStatus status) {

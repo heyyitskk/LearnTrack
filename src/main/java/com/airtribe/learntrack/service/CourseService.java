@@ -6,15 +6,15 @@ import com.airtribe.learntrack.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CourseService {
     private final List<Course> courses = new ArrayList<>();
 
-    public void addCourse(String name, String description, int weeks){
+    public Course addCourse(String name, String description, int weeks){
         int id = IdGenerator.nextCourseId();
         Course c = new Course(id, name, description, weeks);
         courses.add(c);
+        return c;
     }
 
     public List<Course> listCourses() {

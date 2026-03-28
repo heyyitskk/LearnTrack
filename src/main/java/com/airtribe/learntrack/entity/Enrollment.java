@@ -27,7 +27,8 @@ public class Enrollment {
     public EnrollmentStatus getStatus() { return status; }
     public void setStatus(EnrollmentStatus status) { this.status = status; }
 
-    public String getDetails() {
+    @Override
+    public String toString() {
         return "Enrollment{" + "id=" + id + ", studentId=" + studentId + ", courseId=" + courseId + ", date=" + enrollmentDate + ", status=" + status + '}';
     }
 }

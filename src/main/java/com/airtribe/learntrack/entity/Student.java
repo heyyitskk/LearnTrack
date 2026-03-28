@@ -34,7 +34,7 @@ public class Student extends Person{
     }
 
     @Override
-    public String getDetails() {
+    public String toString() {
         return "Student{" + "id=" + id + ", name='" + getDisplayName() + '\'' + ", email='" + email + '\'' + ", batch='"
                 + batch + '\'' + ", active=" + active + '}';
     }

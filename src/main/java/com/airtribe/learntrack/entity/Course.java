@@ -24,7 +24,8 @@ public class Course {
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
 
-    public String getDetails() {
+    @Override
+    public String toString() {
         return "Course{" + "id=" + id + ", name='" + courseName + '\'' + ", weeks=" + durationInWeeks + ", active=" + active + '}';
     }
 }

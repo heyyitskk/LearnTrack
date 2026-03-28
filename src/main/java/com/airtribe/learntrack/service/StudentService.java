@@ -10,10 +10,11 @@ import java.util.List;
 public class StudentService {
     private final List<Student> students = new ArrayList<>();
 
-    public void addStudent(String firstName, String lastName, String email, String batch) {
+    public Student addStudent(String firstName, String lastName, String email, String batch) {
         int id = IdGenerator.nextStudentId();
         Student s = new Student(id, firstName, lastName, email, batch);
         students.add(s);
+        return s;
     }
 
     public List<Student> listStudents() {
