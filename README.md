@@ -23,4 +23,4 @@ If you don't have Maven, compile and run with `javac` and `java` directly by com
 
 _*Class Diagram:*_
 
-![LearnTrackUMLdiagram.png](docs/LearnTrackUMLdiagram.png)
+![LearnTrackUML.png](docs/LearnTrackUML.png)
