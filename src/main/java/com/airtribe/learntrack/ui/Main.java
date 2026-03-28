@@ -40,9 +40,7 @@ public class Main {
                     System.out.println("Exiting...");
                     running = false;
                 }
-                default -> {
-                    System.out.println("Option not recognized. Try again.");
-                }
+                default -> System.out.println("Option not recognized. Try again.");
             }
         }
     }
@@ -80,7 +78,14 @@ public class Main {
     private static void searchStudent() {
         System.out.print("Enter student id: ");
         String id = scanner.nextLine().trim();
-        Student s = studentService.findById(Integer.parseInt(id));
+        Student s = null;
+        try {
+            s = studentService.findById(Integer.parseInt(id));
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input");
+        }
         System.out.println(s);
     }
 
@@ -165,8 +170,10 @@ public class Main {
             if (list.isEmpty())
                 System.out.println("No enrollments found.");
             list.forEach(System.out::println);
+        } catch (EntityNotFoundException e) {
+            System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Invalid id format.");
+            System.out.println("Invalid input");
         }
     }
 
@@ -185,6 +192,5 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
 }
 
